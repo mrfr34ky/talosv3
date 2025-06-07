@@ -1,0 +1,32 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+  - kubernetes-dashboard/ks.yaml
+  - cloudflared/ks.yaml
+  - metube/ks.yaml
+  - ext-nas/ks.yaml
+  - ext-pikvm/ks.yaml
+  - doublecommander/ks.yaml
+  - plex/ks.yaml
+  - deemix/ks.yaml
+  - deemix2/ks.yaml
+  - frigate/ks.yaml
+  - homarr/ks.yaml
+  - pihole/ks.yaml
+  - qbittorrent/ks.yaml
+  - syncthing/ks.yaml
+  - radarr/ks.yaml
+  - sonarr/ks.yaml
+  - overseerr/ks.yaml
+  - prowlarr/ks.yaml
+  - plex-auto-languages/ks.yaml
+  - pgadmin/ks.yaml
+  - vaultwarden/ks.yaml
+  - nextcloud/ks.yaml
+  - tailscale/ks.yaml
+  - paperless-ngx/ks.yaml
+  - guacamole/ks.yaml
+  - home-assistant/ks.yaml
+  - mosquitto/ks.yaml
+  - ext-jetkvm/ks.yaml
+  - authentik/ks.yaml

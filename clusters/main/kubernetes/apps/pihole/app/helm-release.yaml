@@ -1,0 +1,91 @@
+---
+# yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/helm.toolkit.fluxcd.io/helmrelease_v2.json
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: pihole
+  namespace: pihole
+spec:
+  interval: 15m
+  chart:
+    spec:
+      chart: pihole
+      version: 19.4.1
+      sourceRef:
+        kind: HelmRepository
+        name: truecharts
+        namespace: flux-system
+      interval: 15m
+  timeout: 20m
+  maxHistory: 3
+  driftDetection:
+    mode: warn
+  install:
+    createNamespace: true
+    remediation:
+      retries: 3
+  upgrade:
+    cleanupOnFail: true
+    remediation:
+      retries: 3
+  uninstall:
+    keepHistory: false
+  values:
+    global:
+      stopAll: false    
+    TZ: Europe/Brussels
+    service:
+      dns:
+        enabled: true
+        type: LoadBalancer
+        loadBalancerIP: ${PIHOLE_IP}     
+    credentials:
+      s3:
+        type: s3
+        url: "${S3URL_minio}"
+        bucket: "${S3PREFIX_minio}-pihole"
+        accessKey: "${S3ID_minio}"
+        secretKey: "${S3KEY_minio}"
+        encrKey: "${S3KEY_minio}" 
+    persistence:
+      config:
+        volsync:
+          - name: b2
+            type: restic
+            credentials: s3
+            dest:
+              enabled: true                          
+            src:
+              enabled: true   
+      dnsmasq:
+        volsync:
+          - name: b2
+            type: restic
+            credentials: s3
+            dest:
+              enabled: true                          
+            src:
+              enabled: true
+    workload:
+      main:
+        podSpec:
+          containers:
+            main:
+              env:
+                FTLCONF_dns_upstreams: ${BLOCKY_IP}
+                FTLCONF_webserver_api_password: "${PIHOLE_PWD}"                           
+    ingress:
+        main:
+          enabled: true
+          ingressClassName: internal
+          integrations:
+            traefik:
+              enabled: false
+            certManager:
+              enabled: true
+              certificateIssuer: domain-0-le-prod
+          hosts:
+            - host: pihole.${DOMAIN_0}
+              paths:
+                - path: /
+                  pathType: Prefix   

@@ -1,0 +1,92 @@
+---
+# yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/helm.toolkit.fluxcd.io/helmrelease_v2.json
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: radarr
+  namespace: radarr
+spec:
+  interval: 15m
+  chart:
+    spec:
+      chart: radarr
+      version: 23.27.0
+      sourceRef:
+        kind: HelmRepository
+        name: truecharts
+        namespace: flux-system
+      interval: 15m
+  timeout: 20m
+  maxHistory: 3
+  driftDetection:
+    mode: warn
+  install:
+    createNamespace: true
+    remediation:
+      retries: 3
+  upgrade:
+    cleanupOnFail: true
+    remediation:
+      retries: 3
+  uninstall:
+    keepHistory: false
+  values:
+    global:
+      stopAll: false
+    TZ: Europe/Brussels
+    credentials:
+      s3:
+        type: s3
+        url: "${S3URL_minio}"
+        bucket: "${S3PREFIX_minio}-radarr"
+        accessKey: "${S3ID_minio}"
+        secretKey: "${S3KEY_minio}"
+        encrKey: "${S3KEY_minio}"        
+    persistence:
+      config:
+        volsync:
+          - name: b2
+            type: restic
+            credentials: s3
+            dest:
+              enabled: true                          
+            src:
+              enabled: true          
+      films:
+        enabled: true
+        path: /mnt/main/Media/Films
+        mountPath: /Videos/Films
+        server: 192.168.1.49
+        type: nfs  
+      bin:
+        enabled: true
+        path: /mnt/main/Media/Recyclebin
+        mountPath: /Recyclebin
+        server: 192.168.1.49
+        type: nfs
+      radarrcompleted:
+        enabled: true
+        path: /mnt/main/Media/downloads/completed
+        mountPath: /media/downloads/completed
+        server: 192.168.1.49
+        type: nfs      
+    ingress:
+        main:
+          enabled: true
+          ingressClassName: internal
+          annotations:
+            nginx.ingress.kubernetes.io/auth-url: http://authentik-http.authentik.svc.cluster.local:10230/outpost.goauthentik.io/auth/nginx
+            nginx.ingress.kubernetes.io/auth-signin: https://radarr.${DOMAIN_0}/outpost.goauthentik.io/start?rd=$scheme://$http_host$escaped_request_uri
+            nginx.ingress.kubernetes.io/auth-response-headers: Set-Cookie,X-authentik-username,X-authentik-groups,X-authentik-entitlements,X-authentik-email,X-authentik-name,X-authentik-uid
+            nginx.ingress.kubernetes.io/auth-snippet: proxy_set_header X-Forwarded-Host $http_host;
+          integrations:
+            traefik:
+              enabled: false
+            certManager:
+              enabled: true
+              certificateIssuer: domain-0-le-prod
+          hosts:
+            - host: radarr.${DOMAIN_0}
+              paths:
+                - path: /
+                  pathType: Prefix          
