@@ -30,3 +30,4 @@ resources:
   - mosquitto/ks.yaml
   - ext-jetkvm/ks.yaml
   - authentik/ks.yaml
+  - k8tz/ks.yaml
