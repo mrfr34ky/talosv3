@@ -4,6 +4,7 @@ metadata:
   name: trim
   namespace: longhorn-system
 spec:
+  timeZone: Europe/Brussels
   concurrency: 1
   cron: 40 3 * * *
   groups:

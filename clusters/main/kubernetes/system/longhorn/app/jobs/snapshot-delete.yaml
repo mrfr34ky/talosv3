@@ -4,6 +4,7 @@ metadata:
   name: snapshot-delete
   namespace: longhorn-system
 spec:
+  timeZone: Europe/Brussels
   concurrency: 1
   cron: 0 3 * * *
   groups:
