@@ -1,0 +1,14 @@
+apiVersion: longhorn.io/v1beta2
+kind: RecurringJob
+metadata:
+  name: snapshot-delete
+  namespace: longhorn-system
+spec:
+  timeZone: Europe/Brussels
+  concurrency: 1
+  cron: 0 3 * * *
+  groups:
+  - default
+  name: delete
+  retain: 0
+  task: snapshot-delete
