@@ -4,7 +4,6 @@ metadata:
   name: snapshot-cleanup
   namespace: longhorn-system
 spec:
-  timeZone: Europe/Brussels
   concurrency: 1
   cron: 20 3 * * *
   groups:
