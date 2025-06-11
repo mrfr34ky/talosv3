@@ -174,3 +174,7 @@ spec:
               paths:
                 - path: /outpost.goauthentik.io
                   pathType: ImplementationSpecific
+            - host: "pihole.${DOMAIN_0}"
+              paths:
+                - path: /outpost.goauthentik.io
+                  pathType: ImplementationSpecific      
