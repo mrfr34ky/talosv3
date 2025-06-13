@@ -52,6 +52,8 @@ spec:
               enabled: true                          
             src:
               enabled: true
+              trigger:
+                schedule: 0 3 * * *
       consume:
         enabled: true
         type: nfs
@@ -69,10 +71,16 @@ spec:
         password: ${PAPERLESS_CNPG_PWD}
         cluster:
           singleNode: true
-        mode: recovery
+        #mode: recovery
         backups:
           enabled: true
           credentials: s3
+          scheduledBackups:
+            - name: daily-backup
+              schedule: "30 3 0 * * *"
+              backupOwnerReference: self
+              immediate: true
+              suspend: false
           revision: "2"
           retentionPolicy: "7d"
         recovery:

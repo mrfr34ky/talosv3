@@ -52,6 +52,8 @@ spec:
               enabled: true                          
             src:
               enabled: true
+              trigger:
+                schedule: 0 3 * * *
       configinc:
         volsync:
           - name: b2
@@ -61,5 +63,7 @@ spec:
               enabled: true                          
             src:
               enabled: true
+              trigger:
+                schedule: 0 3 * * *
     auth:
       enabled: true                      

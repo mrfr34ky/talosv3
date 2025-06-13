@@ -51,7 +51,9 @@ spec:
             dest:
               enabled: true                          
             src:
-              enabled: true  
+              enabled: true
+              trigger:
+                schedule: 0 3 * * *  
       series:
         enabled: true
         path: /mnt/main/Media/Series

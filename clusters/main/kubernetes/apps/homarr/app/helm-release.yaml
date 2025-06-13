@@ -61,6 +61,8 @@ spec:
               enabled: true                          
             src:
               enabled: true
+              trigger:
+                schedule: 0 3 * * *
       icons:
         volsync:
           - name: b2
@@ -70,6 +72,8 @@ spec:
               enabled: true                          
             src:
               enabled: true
+              trigger:
+                schedule: 0 3 * * *
       data:
         volsync:
           - name: b2
@@ -78,7 +82,9 @@ spec:
             dest:
               enabled: true                          
             src:
-              enabled: true               
+              enabled: true
+              trigger:
+                schedule: 0 3 * * *               
     portal:
       open:
         enabled: true          

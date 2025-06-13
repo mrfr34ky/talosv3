@@ -76,15 +76,23 @@ spec:
               enabled: true                          
             src:
               enabled: true
+              trigger:
+                schedule: 0 3 * * *
     cnpg:
       main:
         password: ${VAULTWARDEN_CNPG_PWD}
         cluster:
           singleNode: true
-        mode: recovery
+        #mode: recovery
         backups:
           enabled: true
           credentials: s3
+          scheduledBackups:
+            - name: daily-backup
+              schedule: "30 3 0 * * *"
+              backupOwnerReference: self
+              immediate: true
+              suspend: false
           revision: "4"
           retentionPolicy: "7d"
         recovery:

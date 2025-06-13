@@ -59,6 +59,8 @@ spec:
               enabled: true                          
             src:
               enabled: true
+              trigger:
+                schedule: 0 3 * * *
       drive:
         volsync:
           - name: b2
@@ -67,16 +69,24 @@ spec:
             dest:
               enabled: true                          
             src:
-              enabled: true             
+              enabled: true
+              trigger:
+                schedule: 0 3 * * *             
     cnpg:
       main:
         password: ${GUACAMOLE_CNPG_PWD}
         cluster:
           singleNode: true
-        mode: recovery
+        #mode: recovery
         backups:
           enabled: true
           credentials: s3
+          scheduledBackups:
+            - name: daily-backup
+              schedule: "30 3 0 * * *"
+              backupOwnerReference: self
+              immediate: true
+              suspend: false
           revision: "2"
           retentionPolicy: "7d"
         recovery:
