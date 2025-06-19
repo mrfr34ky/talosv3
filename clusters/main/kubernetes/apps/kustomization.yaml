@@ -6,7 +6,6 @@ resources:
   - metube/ks.yaml
   - ext-nas/ks.yaml
   - ext-pikvm/ks.yaml
-  - doublecommander/ks.yaml
   - plex/ks.yaml
   - deemix/ks.yaml
   - deemix2/ks.yaml
