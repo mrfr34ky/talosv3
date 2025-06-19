@@ -193,4 +193,8 @@ spec:
             - host: "pihole.${DOMAIN_0}"
               paths:
                 - path: /outpost.goauthentik.io
-                  pathType: ImplementationSpecific      
+                  pathType: ImplementationSpecific
+            - host: "krusader.${DOMAIN_0}"
+              paths:
+                - path: /outpost.goauthentik.io
+                  pathType: ImplementationSpecific            

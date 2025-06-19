@@ -31,3 +31,4 @@ resources:
   - ext-jetkvm/ks.yaml
   - authentik/ks.yaml
   - k8tz/ks.yaml
+  - krusader/ks.yaml
