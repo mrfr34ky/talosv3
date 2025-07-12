@@ -30,6 +30,9 @@ spec:
   uninstall:
     keepHistory: false
   values:
+    resources:
+      requests:
+        cpu: 25m   
     ingress:
         main:
           enabled: true
@@ -45,6 +48,4 @@ spec:
               paths:
                 - path: /
                   pathType: Prefix
-    resources:
-      requests:
-        cpu: 25m              
+               
