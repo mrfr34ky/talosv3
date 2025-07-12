@@ -32,7 +32,7 @@ spec:
   values:
     resources:
       requests:
-        cpu: 25m   
+        cpu: 10m   
     ingress:
         main:
           enabled: true

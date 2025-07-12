@@ -33,7 +33,10 @@ spec:
   values: 
     global:
       stopAll: false
-    TZ: Europe/Brussels         
+    TZ: Europe/Brussels  
+    resources:
+      requests:
+        cpu: 10m       
     tailscale:
       authkey: ${TAILSCALE_AUTH_KEY}
       auth_once: false
