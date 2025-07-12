@@ -104,24 +104,24 @@ spec:
         server: 192.168.1.49
         type: nfs  
     addons:
-      vpn:
-        type: gluetun
-        killswitch: true
-        excludeNetworks_IPv4:
-          - "192.168.1.0/24"
-        excludedNetworks_IPv6: []  
-        env:
-          HTTPPROXY: "on"
-          HTTPPROXY_LOG: "on"
-          HTTPPROXY_LISTENING_ADDRESS: :8888
-          DNS_KEEP_NAMESERVER: "off"
-          DNS_ADDRESS: "103.86.96.100"
-          VPN_SERVICE_PROVIDER: "nordvpn"
-          VPN_TYPE: "openvpn"
-          OPENVPN_USER: ${OPENVPN_USER}
-          OPENVPN_PASSWORD: ${OPENVPN_PASSWORD}
-          SERVER_COUNTRIES: "Belgium"
-          FIREWALL_INPUT_PORTS: 10095,8888
+      gluetun:
+        enabled: true
+        container:
+          env:
+            FIREWALL: "on"
+            FIREWALL_OUTBOUND_SUBNETS: "192.168.1.0/24"
+            VPN_SERVICE_PROVIDER: "nordvpn"
+            VPN_TYPE: "openvpn"
+            OPENVPN_USER: ${OPENVPN_USER}
+            OPENVPN_PASSWORD: ${OPENVPN_PASSWORD}
+            SERVER_REGIONS: "Belgium"
+            SERVER_CITIES: "Brussels"
+            HTTPPROXY: "on"
+            HTTPPROXY_LOG: "on"
+            HTTPPROXY_LISTENING_ADDRESS: :8888
+            DNS_KEEP_NAMESERVER: "off"
+            DNS_ADDRESS: "103.86.96.100"
+            FIREWALL_INPUT_PORTS: 10095,8888  
     ingress:
         main:
           enabled: true
