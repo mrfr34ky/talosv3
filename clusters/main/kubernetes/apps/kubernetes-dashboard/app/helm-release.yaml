@@ -29,13 +29,6 @@ spec:
       retries: 3
   uninstall:
     keepHistory: false
-  resources:
-  limits:
-    cpu: 100m
-    memory: 1500Mi
-  requests:
-    cpu: 10m
-    memory: 250Mi  
   values:
     ingress:
         main:
