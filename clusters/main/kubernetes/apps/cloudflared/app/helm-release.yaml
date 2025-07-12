@@ -33,7 +33,10 @@ spec:
   values:
     global:
       stopAll: false
-    TZ: Europe/Brussels    
+    TZ: Europe/Brussels
+    resources:
+      requests:
+        cpu: 10m    
     workload:
       main:
         podSpec:
