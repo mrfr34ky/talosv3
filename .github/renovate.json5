@@ -2,7 +2,7 @@
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
     "config:recommended",
-    "github>truecharts/public//.github/renovate/main.json5",
+    "github>trueforge-org/truecharts//.github/renovate/main.json5",
 	  "github>mrfr34ky/talosv3//.github/special_talos.json5"
   ]
 }
