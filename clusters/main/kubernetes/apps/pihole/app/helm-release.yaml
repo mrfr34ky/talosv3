@@ -39,9 +39,11 @@ spec:
         cpu: 10m
     service:
       dns:
-        enabled: true
         type: LoadBalancer
-        loadBalancerIP: ${PIHOLE_IP}     
+        loadBalancerIP: ${PIHOLE_IP} 
+        integrations:
+          metallb:
+            enabled: true      
     credentials:
       s3:
         type: s3
