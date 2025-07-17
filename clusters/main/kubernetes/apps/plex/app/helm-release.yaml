@@ -50,7 +50,10 @@ spec:
     service:
       main:
         type: LoadBalancer
-        loadBalancerIP: ${PLEX_IP}       
+        loadBalancerIP: ${PLEX_IP}
+        integrations:
+          metallb:
+            enabled: true       
     persistence:
       config:
         size: 200Gi
