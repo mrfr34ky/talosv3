@@ -31,3 +31,4 @@ resources:
   - authentik/ks.yaml
   - k8tz/ks.yaml
   - krusader/ks.yaml
+  - mealie/ks.yaml
