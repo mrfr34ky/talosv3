@@ -83,7 +83,7 @@ spec:
               auth:
                 type: "authentik"
                 internalHost: "authentik-http.authentik.svc.cluster.local:10230"
-                externalHost: "balazs-deemix.${BASE_DOMAIN}"  
+                externalHost: "balazs-deemix.${DOMAIN_0}"  
           hosts:
             - host: balazs-deemix.${DOMAIN_0}
               paths:
