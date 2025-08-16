@@ -41,7 +41,7 @@ spec:
       s3:
         type: s3
         url: "${S3URL_minio}"
-        bucket: "${S3PREFIX_minio}-syncthing"
+        bucket: "${S3PREFIX_minio}-syncthing2"
         accessKey: "${S3ID_minio}"
         secretKey: "${S3KEY_minio}"
         encrKey: "${S3KEY_minio}"        
