@@ -40,11 +40,11 @@ spec:
     credentials:
       s3:
         type: s3
-        url: "${S3URL_minio}"
-        bucket: "${S3PREFIX_minio}-overseerr"
-        accessKey: "${S3ID_minio}"
-        secretKey: "${S3KEY_minio}"
-        encrKey: "${S3KEY_minio}" 
+        url: "${S3URL}"
+        bucket: "${S3PREFIX}-overseerr"
+        accessKey: "${S3ID}"
+        secretKey: "${S3KEY}"
+        encrKey: "${S3KEY}" 
     persistence:
       config:
         volsync:

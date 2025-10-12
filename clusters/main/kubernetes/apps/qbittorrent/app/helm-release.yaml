@@ -51,11 +51,11 @@ spec:
     credentials:
       s3:
         type: s3
-        url: "${S3URL_minio}"
-        bucket: "${S3PREFIX_minio}-qbit"
-        accessKey: "${S3ID_minio}"
-        secretKey: "${S3KEY_minio}"
-        encrKey: "${S3KEY_minio}"            
+        url: "${S3URL}"
+        bucket: "${S3PREFIX}-qbit"
+        accessKey: "${S3ID}"
+        secretKey: "${S3KEY}"
+        encrKey: "${S3KEY}"            
     service:
       torrent:
         loadBalancerIP: ${NGINX_INTERNAL_IP}
